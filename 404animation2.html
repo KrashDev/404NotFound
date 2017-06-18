@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="morf.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<title>404 Animation</title>
+</head>
+<body>
+	<h1>Not Found</h1>
+	<div id="boxHolder">
+	</div>	
+	<style>
+		body {
+			background-color:black;
+		}
+		.squares {
+			width: 50px;
+			height: 50px;
+			position:absolute;
+			margin: 100px;
+			border-radius: 5px;
+			background-color: #e6e6ff;
+		}
+
+		h1 {
+			text-align:center;
+			font-size:100px;
+		}
+		
+
+	</style>
+
+	<script>
+		
+		var squarePositions = 
+			[[0.8,0],[3.2,0],[6,0],[7.2,0],[8.4,0],[10.6,0],[13,0],
+			[0.8,1.2],[3.2,1.2],[6,1.2],[8.4,1.2],[10.6,1.2],[13,1.2],
+			[0.8,2.4],[2,2.4],[3.2,2.4],[6,2.4],[8.4,2.4],[10.6,2.4],[11.8,2.4],[13,2.4],
+			[3.2,3.6],[6,3.6],[8.4,3.6],[13,3.6],
+			[3.2,4.8],[6,4.8],[7.2,4.8],[8.4,4.8],[13,4.8]
+		];
+		var numSquares = squarePositions.length;
+		
+		for (var x = 0; x < numSquares; x++){
+			
+			newSquare = document.createElement("div");
+			newSquare.setAttribute("class","squares");
+			document.getElementById("boxHolder").appendChild(newSquare);
+			console.log(squarePositions[x]);
+			var trans = Morf.transition(newSquare, {
+				// New CSS state
+				'-webkit-transform': 'translate3d('+squarePositions[x][0]*75+'px, '+squarePositions[x][1]*75+'px, 0) rotate(90deg)',
+			}, {
+				duration: '4000ms',
+				timingFunction: 'bouncePast',
+				callback: function (newSquare) {
+					// You can optionally add a callback option for when the animation completes.
+				}
+			});
+		}
+
+	</script>
+	
+</body>
+</html>
